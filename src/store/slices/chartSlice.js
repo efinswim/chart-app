@@ -1,23 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  data: [],
-  labels: [],
+  dataXLabels: [],
+  dataYLabels: [],
 };
 
 export const chartSlice = createSlice({
   name: 'chart',
   initialState,
   reducers: {
-    setData(state, action) {
-      state.data = action.payload
+    setDataXLabels(state, action) {
+      state.dataXLabels = action.payload;
     },
-    setLabel() {},
-    removeData() {},
-    removeLabel() {},
+    setDataYLabels(state, action) {
+      state.dataYLabels = action.payload;
+    },
   },
 });
 
-export const { setData, setLabel, removeData, removeLabel } = chartSlice.actions;
+export const { setDataXLabels, setDataYLabels } = chartSlice.actions;
 
 export default chartSlice.reducer;

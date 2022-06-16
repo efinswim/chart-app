@@ -1,4 +1,4 @@
-const options = [
+const xValues = [
   'January',
   'February',
   'March',
@@ -13,4 +13,4 @@ const options = [
   'December',
 ];
 
-export { options };
+export { xValues };

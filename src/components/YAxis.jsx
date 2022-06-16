@@ -1,20 +1,23 @@
 import { Autocomplete, Box, TextField, Typography } from '@mui/material';
 
-import React from 'react'
+import React from 'react';
 
-import { valueSlots } from '../data/yaxis-data'
+import { yValues } from '../data/yaxis-data'
 
-function YAxis() {
+function YAxis({ yLabels, setYLabels }) {
   return (
     <Box sx={{ marginTop: 3 }}>
       <Typography>Y axis labels</Typography>
       <Autocomplete
+        onChange={(event, newValue) => {
+          setYLabels(newValue);
+        }}
         sx={{ marginTop: 1 }}
         multiple
-        defaultValue={valueSlots()}
-        options={valueSlots()}
+        defaultValue={yLabels}
+        options={yValues}
         size='small'
-        renderInput={(params) => <TextField {...params} label='Data' />}
+        renderInput={(params) => <TextField {...params} key={params.index + 1} label='Y Data' />}
       />
     </Box>
   );
