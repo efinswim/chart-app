@@ -5,16 +5,17 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-function BarChart({ xLabels, yLabels }) {
+function LineChart({ xLabels, yLabels }) {
   const data = {
     labels: xLabels,
     datasets: [
@@ -34,9 +35,9 @@ function BarChart({ xLabels, yLabels }) {
 
   return (
     <Box>
-      <Bar data={data} />
+      <Line data={data} />
     </Box>
   );
 }
 
-export default BarChart;
+export default LineChart;

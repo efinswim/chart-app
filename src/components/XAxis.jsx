@@ -14,7 +14,7 @@ function XAxis({ xLabels, setXLabels }) {
         }}
         sx={{ marginTop: 1 }}
         multiple
-        defaultValue={xLabels}
+        defaultValue={xValues}
         options={xValues}
         size='small'
         renderInput={(params) => <TextField {...params} key={params.index + 1} label='X Data' />}

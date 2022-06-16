@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setDataXLabels, setDataYLabels } from '../store/slices/chartSlice';
 
 import BarChart from '../components/BarChart';
+import LineChart from '../components/LineChart';
 import XAxis from '../components/XAxis';
 import YAxis from '../components/YAxis';
 
@@ -54,6 +55,7 @@ function Chart() {
   useEffect(() => {
     dispatch(setDataXLabels(xLabels));
     dispatch(setDataYLabels(yLabels));
+    console.log(dataXLabels, 'dataXLabels');
   }, [xLabels, yLabels, dispatch]);
 
   return (
@@ -62,6 +64,7 @@ function Chart() {
         <XAxis xLabels={xLabels} setXLabels={setXLabels} />
         <YAxis yLabels={yLabels} setYLabels={setYLabels} />
         <BarChart xLabels={dataXLabels} yLabels={dataYLabels} />
+        <LineChart xLabels={dataXLabels} yLabels={dataYLabels} />
       </Box>
     </Container>
   );
