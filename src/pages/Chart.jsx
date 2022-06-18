@@ -1,4 +1,12 @@
-import { Box, Container } from '@mui/material';
+import {
+  Box,
+  Container,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -47,6 +55,7 @@ function Chart() {
     '95',
     '100',
   ]);
+  const [bar, setBar] = useState('bar');
 
   const dataXLabels = useSelector((state) => state.chart.dataXLabels);
   const dataYLabels = useSelector((state) => state.chart.dataYLabels);
@@ -58,13 +67,45 @@ function Chart() {
     console.log(dataXLabels, 'dataXLabels');
   }, [xLabels, yLabels, dispatch]);
 
+  useEffect(() => {}, [bar]);
+
   return (
     <Container>
       <Box>
         <XAxis xLabels={xLabels} setXLabels={setXLabels} />
         <YAxis yLabels={yLabels} setYLabels={setYLabels} />
-        <BarChart xLabels={dataXLabels} yLabels={dataYLabels} />
-        <LineChart xLabels={dataXLabels} yLabels={dataYLabels} />
+        <Box sx={{ marginTop: 3 }}>
+          <FormControl>
+            <FormLabel id='demo-row-radio-buttons-group-label'>Select chart</FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby='demo-row-radio-buttons-group-label'
+              name='row-radio-buttons-group'
+              defaultValue='bar'>
+              <FormControlLabel
+                value='bar'
+                control={<Radio />}
+                label='Bar'
+                onChange={(event) => {
+                  event.target.checked && setBar(event.target.value);
+                }}
+              />
+              <FormControlLabel
+                value='line'
+                control={<Radio />}
+                label='Line'
+                onChange={(event) => {
+                  event.target.checked && setBar(event.target.value);
+                }}
+              />
+            </RadioGroup>
+          </FormControl>
+        </Box>
+        {bar === 'bar' ? (
+          <BarChart xLabels={dataXLabels} yLabels={dataYLabels} />
+        ) : (
+          <LineChart xLabels={dataXLabels} yLabels={dataYLabels} />
+        )}
       </Box>
     </Container>
   );
